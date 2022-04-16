@@ -1,0 +1,73 @@
+{
+  "name": "vv",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "npm run lint:js && npm run lint:style && npm run lint:prettier && npm run tsc",
+    "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx  ./src",
+    "lint-staged": "lint-staged",
+    "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
+    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx  ./src && npm run lint:style",
+    "lint:prettier": "prettier -c --write \"src/**/*\" --end-of-line auto",
+    "lint:style": "stylelint --fix \"src/**/*.css\" ",
+    "tsc": "tsc --noEmit",
+    "prepare": "husky install",
+    "log": "conventional-changelog --config ./node_modules/@felix_marcus/commitlint/lib/log -i CHANGELOG.md -s -r 0",
+    "commit": "npm run lint:js && npm run log && git add .  && git-cz"
+  },
+  "lint-staged": {
+    "**/*.less": "stylelint --syntax less",
+    "**/*.{js,jsx,ts,tsx}": "npm run lint-staged:js",
+    "**/*.{js,jsx,tsx,ts,less,md,json}": [
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.7.2",
+    "classnames": "^2.3.1",
+    "history": "^5.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "6",
+    "umi-request": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.12",
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
+    "@typescript-eslint/eslint-plugin": "^5.10.1",
+    "@typescript-eslint/parser": "^5.10.1",
+    "@vitejs/plugin-react": "^1.0.7",
+    "@felix_marcus/commitlint": "^1.1.0",
+    "@felix_marcus/compass": "^1.0.1",
+    "autoprefixer": "^10.4.2",
+    "commitizen": "^4.2.4",
+    "right-pad": "^1.0.1",
+    "commitlint": "^16.2.3",
+    "conventional-changelog-cli": "^2.2.2",
+    "eslint": "^8.7.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.4",
+    "postcss": "^8.4.5",
+    "postcss-import": "^14.0.2",
+    "postcss-pxtorem": "^6.0.0",
+    "prettier": "^2.5.1",
+    "stylelint": "^14.3.0",
+    "tailwindcss": "^3.0.16",
+    "typescript": "^4.5.5",
+    "vite": "^2.7.2"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/@felix_marcus/commitlint/lib/cz"
+    }
+  }
+}
